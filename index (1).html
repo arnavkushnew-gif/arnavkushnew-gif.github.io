@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Arnav Kush — TAPMI IPM 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,400;0,500;1,400&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --y:#FFD600;
+  --o:#FF4D00;
+  --dark:#0A0A0A;
+  --dark2:#111111;
+  --dark3:#1A1A1A;
+  --muted:rgba(255,255,255,0.4);
+  --border:rgba(255,255,255,0.08);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden;cursor:none;}
+
+/* CURSOR */
+.cursor{width:12px;height:12px;background:var(--y);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transition:transform 0.15s ease;mix-blend-mode:difference;}
+.cursor-ring{width:36px;height:36px;border:1.5px solid var(--y);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:transform 0.08s ease;opacity:0.5;}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:24px 48px;position:fixed;top:0;width:100%;z-index:100;mix-blend-mode:normal;}
+.nav-logo{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;letter-spacing:-0.5px;}
+.nav-logo span{color:var(--y);}
+.nav-right{display:flex;align-items:center;gap:32px;}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{color:var(--muted);font-size:13px;font-weight:500;text-decoration:none;transition:color 0.2s;letter-spacing:0.3px;}
+.nav-links a:hover{color:#fff;}
+.nav-dot{width:8px;height:8px;background:var(--y);border-radius:50%;animation:blink 2s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 48px 60px;position:relative;overflow:hidden;}
+.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
+.hero-glow{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(255,214,0,0.08) 0%,transparent 70%);top:-100px;right:-100px;pointer-events:none;}
+.hero-glow2{position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(255,77,0,0.06) 0%,transparent 70%);bottom:100px;left:0;pointer-events:none;}
+
+.hero-tag{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);color:var(--muted);font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;padding:8px 16px;border-radius:4px;margin-bottom:32px;width:fit-content;}
+.hero-tag-inner{width:6px;height:6px;background:var(--y);border-radius:50%;}
+
+.hero-name{font-family:'Syne',sans-serif;font-size:clamp(72px,13vw,140px);font-weight:800;line-height:0.88;letter-spacing:-4px;margin-bottom:0;}
+.hero-name .first{display:block;color:#fff;}
+.hero-name .last{display:block;color:var(--y);font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-2px;}
+
+.hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;margin-top:40px;flex-wrap:wrap;gap:24px;}
+.hero-desc{font-size:15px;color:var(--muted);max-width:380px;line-height:1.8;}
+.hero-desc strong{color:#fff;}
+.hero-stats{display:flex;gap:40px;}
+.stat{text-align:right;}
+.stat-n{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--y);line-height:1;}
+.stat-l{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:4px;}
+
+/* MARQUEE */
+.marquee-wrap{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 0;overflow:hidden;background:var(--dark2);}
+.marquee-inner{display:flex;gap:0;animation:marquee 20s linear infinite;white-space:nowrap;}
+@keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-50%);}  }
+.marquee-item{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:0 32px;display:flex;align-items:center;gap:16px;}
+.marquee-item span{color:var(--y);}
+
+/* STORY */
+.story{padding:100px 48px;background:var(--dark);}
+.s-label{font-size:11px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--y);margin-bottom:16px;}
+.s-title{font-family:'Syne',sans-serif;font-size:clamp(32px,5vw,52px);font-weight:800;line-height:1.05;letter-spacing:-1.5px;margin-bottom:56px;max-width:600px;}
+.story-cols{display:grid;grid-template-columns:1fr 1fr;gap:2px;max-width:900px;}
+.sc{padding:36px;background:var(--dark3);position:relative;overflow:hidden;transition:background 0.25s;}
+.sc:hover{background:#1f1f1f;}
+.sc::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--y);transition:height 0.3s ease;}
+.sc:hover::before{height:100%;}
+.sc-num{font-family:'Syne',sans-serif;font-size:64px;font-weight:800;color:rgba(255,214,0,0.06);line-height:1;position:absolute;top:16px;right:20px;}
+.sc-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:#fff;margin-bottom:10px;}
+.sc-text{font-size:14px;color:var(--muted);line-height:1.75;}
+.sc.highlight{background:var(--y);}
+.sc.highlight .sc-title{color:#000;}
+.sc.highlight .sc-text{color:rgba(0,0,0,0.65);}
+.sc.highlight .sc-num{color:rgba(0,0,0,0.08);}
+.sc.highlight::before{background:#000;}
+
+/* WINS */
+.wins{padding:100px 48px;background:var(--dark2);}
+.wins-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--border);max-width:900px;}
+.win{background:var(--dark2);padding:32px 28px;transition:background 0.2s;}
+.win:hover{background:var(--dark3);}
+.win-icon{font-size:28px;margin-bottom:16px;display:block;}
+.win-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:8px;}
+.win-sub{font-size:13px;color:var(--muted);line-height:1.6;}
+.win-tag{margin-top:14px;display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border:1px solid;}
+.wt-y{border-color:rgba(255,214,0,0.3);color:var(--y);}
+.wt-o{border-color:rgba(255,77,0,0.3);color:var(--o);}
+.wt-w{border-color:rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);}
+
+/* BIG SCORE */
+.score{background:var(--y);padding:80px 48px;text-align:center;}
+.score-big{font-family:'Syne',sans-serif;font-size:clamp(100px,22vw,200px);font-weight:800;color:#000;line-height:0.85;letter-spacing:-6px;}
+.score-desc{font-family:'DM Sans',sans-serif;font-size:16px;color:rgba(0,0,0,0.55);margin-top:20px;letter-spacing:0.5px;}
+.score-vs{font-family:'Instrument Serif',serif;font-style:italic;font-size:22px;color:#000;margin-top:8px;opacity:0.6;}
+
+/* VIBE */
+.vibe{padding:100px 48px;background:var(--dark);}
+.vibe-quote{font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(28px,4.5vw,48px);color:#fff;max-width:720px;line-height:1.3;margin-bottom:60px;}
+.vibe-quote em{color:var(--y);font-style:normal;}
+.vibe-pills{display:flex;flex-wrap:wrap;gap:12px;}
+.vp{border:1px solid var(--border);border-radius:60px;padding:12px 24px;font-size:14px;font-weight:500;color:rgba(255,255,255,0.6);transition:all 0.2s;display:flex;align-items:center;gap:8px;}
+.vp:hover{border-color:var(--y);color:var(--y);}
+
+/* FOOTER */
+footer{padding:60px 48px;background:var(--dark2);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+.f-name{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;letter-spacing:-0.5px;}
+.f-name span{color:var(--y);}
+.f-right{text-align:right;}
+.f-sub{font-size:13px;color:var(--muted);}
+.f-tag{display:inline-block;margin-top:10px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--y);border:1px solid rgba(255,214,0,0.25);padding:7px 16px;}
+
+/* SCROLL ANIMATIONS */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+@media(max-width:640px){
+  nav{padding:18px 20px;}
+  .nav-links{display:none;}
+  .hero{padding:0 20px 48px;}
+  .hero-name{letter-spacing:-2px;}
+  .story,.wins,.vibe{padding:70px 20px;}
+  .story-cols{grid-template-columns:1fr;}
+  .hero-stats{gap:24px;}
+  footer{padding:40px 20px;flex-direction:column;align-items:flex-start;}
+  .f-right{text-align:left;}
+  .score{padding:60px 20px;}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <div class="nav-logo">AK<span>.</span></div>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#story">Story</a></li>
+      <li><a href="#wins">Wins</a></li>
+      <li><a href="#vibe">Vibe</a></li>
+    </ul>
+    <div class="nav-dot"></div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+
+  <div class="hero-tag"><span class="hero-tag-inner"></span>TAPMI IPM · Candidate 2025</div>
+  <h1 class="hero-name">
+    <span class="first">ARNAV</span>
+    <span class="last">Kush.</span>
+  </h1>
+  <div class="hero-bottom">
+    <p class="hero-desc">School Captain. National drummer. Basketball scorer.<br/><strong>Powered by BARC. Built by constant change.</strong></p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-n">10+</div>
+        <div class="stat-l">Achievements</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">32</div>
+        <div class="stat-l">pts in finals</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">5+</div>
+        <div class="stat-l">Schools. 1 me.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <div class="marquee-item">School Captain <span>·</span></div>
+    <div class="marquee-item">All-India Gold × 2 <span>·</span></div>
+    <div class="marquee-item">32 pts in the final <span>·</span></div>
+    <div class="marquee-item">Electric Drums <span>·</span></div>
+    <div class="marquee-item">Congo <span>·</span></div>
+    <div class="marquee-item">Basketball Captain <span>·</span></div>
+    <div class="marquee-item">BARC Mumbai <span>·</span></div>
+    <div class="marquee-item">PCM + CS <span>·</span></div>
+    <div class="marquee-item">TAPMI IPM 2025 <span>·</span></div>
+    <div class="marquee-item">School Captain <span>·</span></div>
+    <div class="marquee-item">All-India Gold × 2 <span>·</span></div>
+    <div class="marquee-item">32 pts in the final <span>·</span></div>
+    <div class="marquee-item">Electric Drums <span>·</span></div>
+    <div class="marquee-item">Congo <span>·</span></div>
+    <div class="marquee-item">Basketball Captain <span>·</span></div>
+    <div class="marquee-item">BARC Mumbai <span>·</span></div>
+    <div class="marquee-item">PCM + CS <span>·</span></div>
+    <div class="marquee-item">TAPMI IPM 2025 <span>·</span></div>
+  </div>
+</div>
+
+<section class="story" id="story">
+  <div class="s-label">The origin story</div>
+  <div class="s-title">Change was never my enemy.<br/>It was my coach.</div>
+  <div class="story-cols reveal">
+    <div class="sc">
+      <div class="sc-num">01</div>
+      <div class="sc-title">Born into transitions</div>
+      <div class="sc-text">Dad's AEES job meant new city, new school, new friends every 3–4 years. Most kids dread it. I learned to thrive in it.</div>
+    </div>
+    <div class="sc highlight">
+      <div class="sc-num">02</div>
+      <div class="sc-title">New kid → connector</div>
+      <div class="sc-text">I learned to read rooms fast and build trust quickly. That "uncomfortable" skill became my biggest leadership advantage.</div>
+    </div>
+    <div class="sc" style="background:#1a1a1a;">
+      <div class="sc-num">03</div>
+      <div class="sc-title">Captain in every room</div>
+      <div class="sc-text">Despite always being the new kid, I kept ending up in charge — Vice Captain → Captain → Sports Leader → Stage Commander.</div>
+    </div>
+    <div class="sc" style="background:var(--o);">
+      <div class="sc-num">04</div>
+      <div class="sc-title" style="color:#fff;">Now: TAPMI time</div>
+      <div class="sc-text" style="color:rgba(255,255,255,0.7);">18 years of real-world experience. TAPMI IPM is where Arnav Kush turns all of that into something the world will remember.</div>
+    </div>
+  </div>
+</section>
+
+<section class="wins" id="wins">
+  <div class="s-label">The trophy wall</div>
+  <div class="s-title" style="margin-bottom:40px;">What I've won.</div>
+  <div class="wins-grid reveal">
+    <div class="win">
+      <span class="win-icon">🎖️</span>
+      <div class="win-title">School Captain 2024–25</div>
+      <div class="win-sub">Highest student leadership role. Led assemblies, CCAs and the whole student body.</div>
+      <span class="win-tag wt-y">Leadership</span>
+    </div>
+    <div class="win">
+      <span class="win-icon">🥁</span>
+      <div class="win-title">All-India Music Gold × 2</div>
+      <div class="win-sub">Electric drums + congo. 20+ teams. Under DAE / Department of Atomic Energy, PMO.</div>
+      <span class="win-tag wt-o">National · Music</span>
+    </div>
+    <div class="win">
+      <span class="win-icon">🏀</span>
+      <div class="win-title">32 pts in the basketball final</div>
+      <div class="win-sub">Team scored 52–13. As Sports Captain, led juniors to 1st place in volleyball AND basketball.</div>
+      <span class="win-tag wt-y">Sports</span>
+    </div>
+    <div class="win">
+      <span class="win-icon">🎤</span>
+      <div class="win-title">School Vice Captain 2023–24</div>
+      <div class="win-sub">One rank below the top. For exactly one year — then promoted to Captain.</div>
+      <span class="win-tag wt-w">Leadership</span>
+    </div>
+    <div class="win">
+      <span class="win-icon">🏐</span>
+      <div class="win-title">Inter-House Volleyball Gold</div>
+      <div class="win-sub">Personal gold on the court, plus inter-house music competition 1st prize.</div>
+      <span class="win-tag wt-y">Sports + Music</span>
+    </div>
+    <div class="win">
+      <span class="win-icon">🌅</span>
+      <div class="win-title">Morning Assembly Commander</div>
+      <div class="win-sub">Conducted CCAs, commanded assemblies. Stage presence — fully certified.</div>
+      <span class="win-tag wt-w">Communication</span>
+    </div>
+  </div>
+</section>
+
+<section class="score">
+  <div class="score-big">32</div>
+  <div class="score-desc">personal points in the basketball final</div>
+  <div class="score-vs">Team: 52 pts &nbsp;·&nbsp; Opponents: 13 pts</div>
+</section>
+
+<section class="vibe" id="vibe">
+  <div class="s-label">Beyond the trophies</div>
+  <div class="vibe-quote reveal">"I grew up with <em>atomic energy.</em><br/>Now I run on <em>atomic habits.</em>"</div>
+  <div class="vibe-pills reveal">
+    <div class="vp">🥁 Drums · Piano · Congo</div>
+    <div class="vp">🐕 Feeds stray animals</div>
+    <div class="vp">📖 Self-development books</div>
+    <div class="vp">🏀 Basketball captain</div>
+    <div class="vp">☢️ BARC, Mumbai kid</div>
+    <div class="vp">🎓 PCM + Computer Science</div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="f-name">ARNAV <span>KUSH</span></div>
+    <div class="f-sub" style="margin-top:6px;">BARC, Mumbai · AECS · PCM + CS</div>
+  </div>
+  <div class="f-right">
+    <div class="f-sub">Good Afternoon, Sir 🙏</div>
+    <div class="f-tag">TAPMI IPM · Class of 2030</div>
+  </div>
+</footer>
+
+<script>
+// custom cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX; my=e.clientY;
+  cursor.style.transform=`translate(${mx-6}px,${my-6}px)`;
+});
+function animRing(){
+  rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12;
+  ring.style.transform=`translate(${rx-18}px,${ry-18}px)`;
+  requestAnimationFrame(animRing);
+}
+animRing();
+document.querySelectorAll('a,button,.win,.sc,.vp').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.transform+=' scale(2)';ring.style.opacity='0';});
+  el.addEventListener('mouseleave',()=>{cursor.style.transform=cursor.style.transform.replace(' scale(2)','');ring.style.opacity='0.5';});
+});
+
+// scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
+},{threshold:0.15});
+revealEls.forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
